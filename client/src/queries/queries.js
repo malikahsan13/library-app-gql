@@ -1,4 +1,4 @@
-import {gql } from '@apollo/client';
+import {gql, useMutation  } from '@apollo/client';
 
 const Get_Books = gql`
   query GetBooks {  
@@ -19,4 +19,14 @@ const Get_Authors = gql`
   }
 `;
 
-export {Get_Books, Get_Authors};
+const Add_Book = gql`
+  mutation($name: String!, $genre: String!, $authorId: ID!) {
+    addBook(name: $name, genre: $genre, authorId: $authorId) {
+      name
+      genre
+      authorId
+    }
+  }
+`;
+
+export {Get_Books, Get_Authors, Add_Book};
