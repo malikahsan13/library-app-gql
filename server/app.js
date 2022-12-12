@@ -2,6 +2,7 @@ const express = require('express');
 const {graphqlHTTP} = require('express-graphql');
 const schema = require('./Schema/schema');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 //mongoose.set('strictQuery',true);
 let mongoURI = "mongodb://127.0.0.1:27017/library-app";
@@ -12,6 +13,8 @@ mongoose.connect(mongoURI);
 // });
 
 const app = express();
+
+app.use(cors());
 
 // Get the default connection
 //const db = mongoose.connection;
