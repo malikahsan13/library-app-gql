@@ -1,6 +1,6 @@
 import React from 'react'
 import { useQuery, useMutation } from '@apollo/client';
-import { Get_Authors, Add_Book } from '../queries/queries';
+import { Get_Books, Get_Authors, Add_Book } from '../queries/queries';
 import { useState } from 'react';
 
 export default function AddBook() {
@@ -21,19 +21,18 @@ export default function AddBook() {
         e.preventDefault();
         if (loading) return 'Submitting...';
         if (error) return `Submission error! ${error.message}`;
-        addBook({ variables: { name: name, genre: genre, authorId: authorId } });
-        //setName=""; setGenre=""; setAuthorId="";
+        addBook({ variables: { name: name, genre: genre, authorId: authorId }, refetchQueries:[{ query: Get_Books }] }).catch((e)=> console.log(e));
       }
   return (
     <div>
       <form id='add-book' onSubmit={submitForm}>
         <div className='field'>
             <label>Book Name</label>
-            <input type="text" onChange={(e) => setName(e.target.value) } />
+            <input type="text" value={name} onChange={(e) => setName(e.target.value) } />
         </div>
         <div className='field'>
             <label>Genre</label>
-            <input type="text" onChange={(e) => setGenre(e.target.value) } />
+            <input type="text" value={genre} onChange={(e) => setGenre(e.target.value) } />
         </div>
         <div className='field'>
             <label>Author</label>
