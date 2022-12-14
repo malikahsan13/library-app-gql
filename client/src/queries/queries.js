@@ -1,4 +1,4 @@
-import {gql, useMutation  } from '@apollo/client';
+import {gql} from '@apollo/client';
 
 const Get_Books = gql`
   query GetBooks {  
@@ -20,7 +20,7 @@ const Get_Authors = gql`
 `;
 
 const Add_Book = gql`
-  mutation AddBook($name: String!, $genre: String!, $authorId: ID!) {
+  mutation AddBook($name: String!, $genre: String!, $authorId: String!) {
     addBook(name: $name, genre: $genre, authorId: $authorId) {
       name
       genre

@@ -10,7 +10,7 @@ export default function BookList() {
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error : {error.message}</p>;
         return data.books.map(({ id, name, genre }) => (
-          <li onClick={(e)=>{selectBookId(id)}} key={id}>{name}</li>
+          <li onClick={(e)=>{selectBookId(id)}} style={{ cursor:"pointer" }} key={id}>{name}</li>
         ));  
       }
       

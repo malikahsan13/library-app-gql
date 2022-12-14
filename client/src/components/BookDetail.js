@@ -3,12 +3,13 @@ import { useQuery } from "@apollo/client";
 import { Get_Book_Detail } from "../queries/queries";
 
 const BookDetail = ({ bookId }) => {
-  const ShowDetails = () => {
+  function ShowDetails() {
     const { loading, error, data } = useQuery(Get_Book_Detail, {
         variables: { id: bookId },
     });
     if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error : {error.message}</p>;
+    if (error) return <p>{//Error : {//error.message}
+    }</p>;
     const { book } = data;
     if(book){
         return(
@@ -25,6 +26,8 @@ const BookDetail = ({ bookId }) => {
             </ul> */}
         </div>
         )
+    }else{
+        return ( <div>No Book Selected ...</div> )
     }
   }
   return (
